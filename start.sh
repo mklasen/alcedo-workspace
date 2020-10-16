@@ -3,7 +3,7 @@
 ROOT=$PWD
 SITES=$ROOT/sites/
 CERTS=$PWD/certs
-FILE=CERTS/${domain}.pem
+FILE=CERTS/${DOMAIN}.pem
 CURRENT_SITE=$SITES/$1
 
 if [ ! -d $CURRENT_SITE ]; then
