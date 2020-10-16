@@ -23,10 +23,11 @@ Run `sh start.sh wp-test`
 ## Setup
 1. Install mkcert (see https://github.com/FiloSottile/mkcert)
 2. Setup dnsmasq (follow the first part of this guide: https://mklasen.com/general/wildcard-subdomains-in-mamp-pro-on-macos/)
-3. Run `docker-compose up`
-4. Create a sites folder
-5. Create a project folder in sites, and add your docker-compose file
-6. Run `sh start.sh project-folder`
+3. Create a docker network: `docker network create nginx-proxy`
+4. Run `docker-compose up`
+5. Create a sites folder
+6. Create a project folder in sites, and add your docker-compose file
+7. Run `sh start.sh project-folder`
 
 ## Dependencies
 - dnsmasq
