@@ -25,12 +25,12 @@ fi
 # Check if certificate exists
 if [ ! -f $FILE ]; then
 	cd $CERTS 
-	mkcert ${domain} 
+	mkcert ${DOMAIN} 
 fi
 
 # Copy certificates
-docker cp ${domain}-key.pem nginx-proxy:/etc/nginx/certs/${domain}.key
-docker cp ${domain}.pem nginx-proxy:/etc/nginx/certs/${domain}.crt
+docker cp ${DOMAIN}-key.pem nginx-proxy:/etc/nginx/certs/${DOMAIN}.key
+docker cp ${DOMAIN}.pem nginx-proxy:/etc/nginx/certs/${DOMAIN}.crt
 
 cd $CURRENT_SITE
 
