@@ -9,12 +9,12 @@ services:
       - "80:80"
       - "443:443"
     volumes:
-      - conf:/etc/nginx/conf.d
       - vhost:/etc/nginx/vhost.d
       - html:/usr/share/nginx/html
       - dhparam:/etc/nginx/dhparam
       - certs:/etc/nginx/certs
       - /var/run/docker.sock:/tmp/docker.sock:ro
+      - ./config/nginx:/etc/nginx/conf.d
     restart: always
 
   letsencrypt:
@@ -30,7 +30,6 @@ services:
     restart: always
 
 volumes:
-  conf:
   vhost:
   html:
   dhparam:

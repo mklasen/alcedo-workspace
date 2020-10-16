@@ -3,6 +3,16 @@
 ROOT=$PWD
 SITES=$ROOT/sites/
 CERTS=$PWD/certs
+
+
+# Change to site dir
+cd $SITES/$1
+
+# Get variables from .env
+set -o allexport; source .env; set +o allexport
+
+cd $ROOT;
+
 FILE=CERTS/${DOMAIN}.pem
 CURRENT_SITE=$SITES/$1
 
@@ -10,12 +20,6 @@ if [ ! -d $CURRENT_SITE ]; then
 	echo 'Site not found.'
 	exit 1;
 fi
-
-# Change to site dir
-cd $SITES/$1
-
-# Get variables from .env
-set -o allexport; source .env; set +o allexport
 
 # Certs exist?
 if [ ! -d $CERTS ]; then
@@ -29,8 +33,8 @@ if [ ! -f $FILE ]; then
 fi
 
 # Copy certificates
-docker cp ${DOMAIN}-key.pem nginx-proxy:/etc/nginx/certs/${DOMAIN}.key
-docker cp ${DOMAIN}.pem nginx-proxy:/etc/nginx/certs/${DOMAIN}.crt
+docker cp CERTS/${DOMAIN}-key.pem nginx-proxy:/etc/nginx/certs/${DOMAIN}.key
+docker cp CERTS/${DOMAIN}.pem nginx-proxy:/etc/nginx/certs/${DOMAIN}.crt
 
 cd $CURRENT_SITE
 
