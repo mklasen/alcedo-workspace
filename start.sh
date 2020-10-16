@@ -13,7 +13,7 @@ set -o allexport; source .env; set +o allexport
 
 cd $ROOT;
 
-FILE=CERTS/${DOMAIN}.pem
+
 CURRENT_SITE=$SITES/$1
 
 if [ ! -d $CURRENT_SITE ]; then
@@ -21,20 +21,27 @@ if [ ! -d $CURRENT_SITE ]; then
 	exit 1;
 fi
 
-# Certs exist?
+
+# Certs directory exist?
 if [ ! -d $CERTS ]; then
 	mkdir $CERTS 
 fi
 
-# Check if certificate exists
-if [ ! -f $FILE ]; then
+IFS=',' read -ra ADDR <<< "$DOMAINS"
+for i in "${ADDR[@]}"; do
+	# Check if certificate exists
+	FILE=$CERTS/${i}.pem
 	cd $CERTS 
-	mkcert ${DOMAIN} 
-fi
+	echo "mkcert ${i}"
+	mkcert ${i} 
 
-# Copy certificates
-docker cp CERTS/${DOMAIN}-key.pem nginx-proxy:/etc/nginx/certs/${DOMAIN}.key
-docker cp CERTS/${DOMAIN}.pem nginx-proxy:/etc/nginx/certs/${DOMAIN}.crt
+	echo "docker cp $CERTS/${i}-key.pem nginx-proxy:/etc/nginx/certs/${i}.key";
+
+	# Copy certificates
+	docker cp $CERTS/${i}-key.pem nginx-proxy:/etc/nginx/certs/${i}.key
+	docker cp $CERTS/${i}.pem nginx-proxy:/etc/nginx/certs/${i}.crt
+done
+
 
 cd $CURRENT_SITE
 
