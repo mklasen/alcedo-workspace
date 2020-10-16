@@ -19,8 +19,8 @@ set -o allexport; source .env; set +o allexport
 
 # Certs exist?
 if [ ! -d $CERTS ]; then
-		mkdir $CERTS 
-	fi
+	mkdir $CERTS 
+fi
 
 # Check if certificate exists
 if [ ! -f $FILE ]; then
