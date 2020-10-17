@@ -48,6 +48,7 @@ The start.sh script will also search for a `sites/example/config.init.sh` script
 4. Run `docker-compose up`
 5. *Optionally setup your own project in `sites/`*
 6. Run `npm run start example` (or replace example by your own project)
+7. Go to https://examplesite.test  (or replace with DOMAIN from your .env file)
 
 ## Dependencies
 - dnsmasq

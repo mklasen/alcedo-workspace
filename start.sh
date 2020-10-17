@@ -14,7 +14,7 @@ set -o allexport; source .env; set +o allexport
 cd $ROOT;
 
 
-CURRENT_SITE=$SITES/$1
+CURRENT_SITE=$SITES$1
 
 if [ ! -d $CURRENT_SITE ]; then
 	echo 'Site not found.'
