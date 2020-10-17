@@ -22,9 +22,9 @@ The start.sh script will also search for a `sites/example/config.init.sh` script
 
 ## Setup
 1. Install [mkcert](https://github.com/FiloSottile/mkcert).
-2. Install and configure dnsmasq
-	*2.1* Run ```brew install dnsmasq```
-	*2.2* Run```nano $(brew --prefix)/etc/dnsmasq.conf```
+2. Install and configure dnsmasq</br>
+	*2.1* Run ```brew install dnsmasq```</br>
+	*2.2* Run```nano $(brew --prefix)/etc/dnsmasq.conf```</br>
 	*2.3* Add the contents below to the top of the file
 	```
 	# --- Added by mklasen
@@ -38,12 +38,11 @@ The start.sh script will also search for a `sites/example/config.init.sh` script
 	bogus-priv
 	# ----
 	```
-	*2.4* Run ```sudo mkdir /etc/resolver```
-	*2.5* Run ```sudo nano /etc/resolver/test```
-	*2.6* Add the contents below to the file
-	```nameserver 127.0.0.1```
-	*2.7* Run```sudo brew services start dnsmasq```
-	<br/>
+	*2.4* Run ```sudo mkdir /etc/resolver```</br>
+	*2.5* Run ```sudo nano /etc/resolver/test```</br>
+	*2.6* Add the contents below to the file</br>
+	```nameserver 127.0.0.1```</br>
+	*2.7* Run```sudo brew services start dnsmasq```<br/>
 3. Create a docker network: `docker network create nginx-proxy`
 4. Run `docker-compose up`
 5. Setup your own project in `sites/`
