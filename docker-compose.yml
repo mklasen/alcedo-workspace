@@ -15,7 +15,7 @@ services:
       - dhparam:/etc/nginx/dhparam
       - certs:/etc/nginx/certs
       - /var/run/docker.sock:/tmp/docker.sock:ro
-      - ./config/nginx/nginx.conf:/etc/nginx/conf.d/custom.conf
+      - ./config/nginx/custom.conf:/etc/nginx/conf.d/custom.conf
     restart: always
 
   letsencrypt:
