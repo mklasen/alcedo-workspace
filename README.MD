@@ -46,8 +46,8 @@ The start.sh script will also search for a `sites/example/config.init.sh` script
 	*2.7* Run```sudo brew services start dnsmasq```<br/>
 3. Create a docker network: `docker network create nginx-proxy`
 4. Run `docker-compose up`
-5. Setup your own project in `sites/`
-6. Run `npm run start example`
+5. *Optionally setup your own project in `sites/`*
+6. Run `npm run start example` (or replace example by your own project)
 
 ## Dependencies
 - dnsmasq
