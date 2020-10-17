@@ -21,7 +21,7 @@ Run `sh start.sh example`
 The start.sh script will also search for a `sites/example/config.init.sh` script and execute it when it's found.
 
 ## Setup
-1. Install [mkcert](https://github.com/FiloSottile/mkcert).
+1. Install [mkcert](https://github.com/FiloSottile/mkcert).</br>
 	*1.1* Run ```brew install mkcert``` (for Firefox: ```brew install nss```)</br>
 2. Install and configure dnsmasq</br>
 	*2.1* Run ```brew install dnsmasq```</br>
