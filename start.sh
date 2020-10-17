@@ -32,10 +32,7 @@ for i in "${ADDR[@]}"; do
 	# Check if certificate exists
 	FILE=$CERTS/${i}.pem
 	cd $CERTS 
-	echo "mkcert ${i}"
 	mkcert ${i} 
-
-	echo "docker cp $CERTS/${i}-key.pem nginx-proxy:/etc/nginx/certs/${i}.key";
 
 	# Copy certificates
 	docker cp $CERTS/${i}-key.pem nginx-proxy:/etc/nginx/certs/${i}.key
@@ -49,4 +46,10 @@ cd $CURRENT_SITE
 docker exec nginx-proxy nginx -s reload
 
 # Run docker compose
-docker-compose up --build
+docker-compose up -d --build
+
+
+# Run container specific scripts
+if [ ! -f $CURRENT_SITE/config/init.sh ]; then
+	sh $CURRENT_SITE/config/init.sh
+fi

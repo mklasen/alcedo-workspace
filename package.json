@@ -1,0 +1,22 @@
+{
+  "name": "docker-workspace",
+  "version": "1.0.0",
+  "description": "The goal of this project is to provide a clean and easy development environment that supports all kinds of projects.",
+  "main": "index.js",
+  "scripts": {
+    "start": "sh start.sh $npm_config_site",
+    "nginx-proxy-check": "docker exec -it nginx-proxy nginx -t",
+    "nginx-proxy-list": "docker exec -it nginx-proxy cat /etc/nginx/conf.d/default.conf",
+    "nginx-proxy-reload": "docker exec -it nginx-proxy nginx -s reload"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mklasen/docker-workspace.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mklasen/docker-workspace/issues"
+  },
+  "homepage": "https://github.com/mklasen/docker-workspace#readme"
+}
