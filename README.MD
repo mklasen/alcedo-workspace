@@ -22,6 +22,7 @@ The start.sh script will also search for a `sites/example/config.init.sh` script
 
 ## Setup
 1. Install [mkcert](https://github.com/FiloSottile/mkcert).
+	*1.1* Run ```brew install mkcert``` (for Firefox: ```brew install nss```)</br>
 2. Install and configure dnsmasq</br>
 	*2.1* Run ```brew install dnsmasq```</br>
 	*2.2* Run```nano $(brew --prefix)/etc/dnsmasq.conf```</br>
