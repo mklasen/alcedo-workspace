@@ -3,3 +3,4 @@ certs/
 sites
 
 !/sites/example
+app/node_modules
