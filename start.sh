@@ -29,14 +29,31 @@ fi
 
 IFS=',' read -ra ADDR <<< "$DOMAINS"
 for i in "${ADDR[@]}"; do
+
+
+
+	originalDomain=$i;
+	generatedFileName=$i;
+
 	# Check if certificate exists
-	FILE=$CERTS/${i}.pem
 	cd $CERTS 
-	mkcert ${i} 
+	mkcert -cert-file ${generatedFileName}.pem -key-file ${generatedFileName}-key.pem ${DOMAINS//[,]/ }
+
+
+	# Check for wildcards
+	if [[ "$i" == *"*"* ]]; then
+		# Wildcard
+		generatedFileName=${originalDomain/\*/_wildcard};
+		originalDomain=${originalDomain/\*./''};
+	fi
+
+	echo "docker cp $CERTS/${generatedFileName}-key.pem nginx-proxy:/etc/nginx/certs/${originalDomain}.key";
+	echo "docker cp $CERTS/${generatedFileName}.pem nginx-proxy:/etc/nginx/certs/${originalDomain}.crt";
 
 	# Copy certificates
-	docker cp $CERTS/${i}-key.pem nginx-proxy:/etc/nginx/certs/${i}.key
-	docker cp $CERTS/${i}.pem nginx-proxy:/etc/nginx/certs/${i}.crt
+	docker cp $CERTS/${generatedFileName}-key.pem nginx-proxy:/etc/nginx/certs/${originalDomain}.key
+	docker cp $CERTS/${generatedFileName}.pem nginx-proxy:/etc/nginx/certs/${originalDomain}.crt
+
 done
 
 
